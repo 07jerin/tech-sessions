@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<title>Closures</title>
+
+</html>
+<body>
+    <h1>Closures</h1>
+    <ol>
+        <li class="track">Track 1</li>
+        <li class="track">Track 2</li>
+        <li class="track">Track 3</li>
+        <li class="track">Track 4</li>
+        <li class="track">Track 5</li>
+        <li class="track">Track 6</li>
+        <li class="track">Track 7</li>
+        <li class="track">Track 8</li>
+        <li class="track">Track 9</li>
+    </ol>
+    <p>Now playing track <span id="number" ></span> </p>
+    <script>
+        
+    var elNumber = document.getElementById("number");
+    
+        function setUpClickHandler(){
+            var elTracks = document.getElementsByClassName("track");
+            
+            function generateClickHandler(index){
+                return function clickHandler(){
+                    elNumber.innerHTML = ++index;
+                }    
+            }
+            
+            
+            for(var i= 0; i<elTracks.length; i++){
+                elTracks[i].addEventListener("click", generateClickHandler(i));
+            }
+            
+           /* function clickHandler(){
+                elNumber.innerHTML = i;
+            }
+            
+            for(var i= 0; i<elTracks.length; i++){
+                elTracks[i].addEventListener("click", clickHandler);
+            }*/
+                    
+    }
+    setUpClickHandler();
+        
+    //Scope of _name is not scoped out even after the function iteslf has finished executing    
+    function person(name){
+        var _name = name;
+        
+        this.getName = function(){
+            return _name;
+        }
+        
+        this.append = function(value){
+            _name = _name + value;
+        }
+    }
+        
+        /*
+        
+        
+        function generateClickHandler(index){
+                return function clickHandler(){
+                    elNumber.innerHTML = ++index;
+                }    
+            }
+            
+            
+            for(var i= 0; i<elTracks.length; i++){
+                elTracks[i].addEventListener("click", generateClickHandler(i));
+            }
+
+        
+        */
+    </script>
+</body>

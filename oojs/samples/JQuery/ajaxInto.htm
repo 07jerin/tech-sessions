@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery and AJAX</title>
+    <script type="text/javascript" src="jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function() {
+            $("#getcontent").click(getContent);
+            $("#loadhtml").click(loadHTML);
+        });
+
+        function getContent() {
+            $.ajax("url",
+                   { success: setContent, type: "GET", dataType: "text" }); // used to perform generic AJAX requests
+        }
+
+        function loadHTML() {
+            $("#id").load("samplehtml.htm"); // loads AJAX content directly into a page element
+        }
+        
+        function setContent(data, status, jqxhr) {
+            $("#id").text(data);
+        }
+
+    </script>
+</head>
+</html>
